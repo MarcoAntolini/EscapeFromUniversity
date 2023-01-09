@@ -1,8 +1,6 @@
 package escapefromuniversity.inGame;
 
 import escapefromuniversity.model.GameState;
-import escapefromuniversity.model.basics.HitBox;
-import escapefromuniversity.model.basics.Point2D;
 import escapefromuniversity.model.gameObject.GameObjectType;
 import escapefromuniversity.model.gameObject.State;
 
@@ -21,16 +19,16 @@ public interface GameView {
 
     /**
      * 
-     * @param id : id of object.
+     * @param id    : id of object.
      * @param state
      */
     void updateSpriteAnimation(int id, State state);
 
     /**
      * 
-     * @param id : id of object.
+     * @param id    : id of object.
      * @param state : state of object.
-     * @param type : type of object.
+     * @param type  : type of object.
      */
     void addSpriteAnimation(int id, State state, GameObjectType type);
 
@@ -48,6 +46,6 @@ public interface GameView {
     void end(GameState gameState);
 
     void setGameController(GameController gc);
-    
+
     void checkID();
 }

@@ -3,7 +3,6 @@ package escapefromuniversity.launcher;
 import static escapefromuniversity.utilities.LauncherResizer.sceneHeight;
 import static escapefromuniversity.utilities.LauncherResizer.sceneWidth;
 
-import escapefromuniversity.inGame.GameControllerImpl;
 import escapefromuniversity.inGame.GameViewImpl;
 import escapefromuniversity.utilities.LauncherResizer;
 import javafx.application.Platform;
@@ -27,17 +26,17 @@ public class LauncherController {
     @FXML
     void newGame(ActionEvent event) {
 
-		try {
-			FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/Game.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/Game.fxml"));
             var x = new GameViewImpl();
-			loader.setController(x);
-			Parent gameRoot = loader.load();
-			Scene game = new Scene(gameRoot, LauncherResizer.sceneWidth, LauncherResizer.sceneHeight);
-			LauncherView.launcherWindow.setScene(game);
+            loader.setController(x);
+            Parent gameRoot = loader.load();
+            Scene game = new Scene(gameRoot, LauncherResizer.sceneWidth, LauncherResizer.sceneHeight);
+            LauncherView.launcherWindow.setScene(game);
             x.drawLayers();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /* Opens the leaderboard scene. */
@@ -55,7 +54,7 @@ public class LauncherController {
         }
     }
 
-    /* Opens the leaderboard scene.*/
+    /* Opens the leaderboard scene. */
     @FXML
     void credits(ActionEvent event) {
         try {

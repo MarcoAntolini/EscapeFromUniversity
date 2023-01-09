@@ -7,7 +7,6 @@ import escapefromuniversity.model.gameObject.GameObject;
 import escapefromuniversity.model.gameObject.GameObjectType;
 import escapefromuniversity.model.gameObject.State;
 import escapefromuniversity.model.GameInit;
-import escapefromuniversity.model.gameObject.player.Player;
 import escapefromuniversity.model.gameObject.player.PlayerImpl;
 
 /**
@@ -38,7 +37,9 @@ public abstract class AbstractBoss extends AbstractDynamicGameObject implements 
      * @param exam
      * @param map
      */
-    public AbstractBoss(final double speed, final Point2D position, final Point2D upperCorner, final Vector2D direction, final GameObjectType type, final int life, final double shootDelay, final int impactDamage, final String exam, final GameInit map) {
+    public AbstractBoss(final double speed, final Point2D position, final Point2D upperCorner, final Vector2D direction,
+            final GameObjectType type, final int life, final double shootDelay, final int impactDamage,
+            final String exam, final GameInit map) {
         super(type, position, upperCorner, speed, direction, map);
         this.life = life;
         this.shootDelay = shootDelay;
@@ -46,7 +47,6 @@ public abstract class AbstractBoss extends AbstractDynamicGameObject implements 
         this.impactDamage = impactDamage;
         this.exam = exam;
         this.previousPosition = position;
-        //this.setDirection(direction);
         this.setState(State.LEFT);
     }
 
@@ -111,24 +111,24 @@ public abstract class AbstractBoss extends AbstractDynamicGameObject implements 
     public void collisionWith(final GameObject gObj2) {
         if (this.collisionWithCheck(gObj2)) {
             switch (gObj2.getType().getCollisionType()) {
-            case OBSTACLE:
-                this.setPosition(this.getPreviousPosition());
-                this.setDirection(getDirection().multiplication(-1));
-                break;
-            case ENTITY:
-                if (gObj2.getType().equals(GameObjectType.PLAYER)) {
-                    if (this.bossState.equals(BossState.QUIZ)) {
-                        this.getMap().goQuiz(this);
-                    } else {
-                        final PlayerImpl player = (PlayerImpl) gObj2;
-                        player.setPosition(player.prevPosition);
-                        player.takeDamage(this.getImpactDamage());
+                case OBSTACLE:
+                    this.setPosition(this.getPreviousPosition());
+                    this.setDirection(getDirection().multiplication(-1));
+                    break;
+                case ENTITY:
+                    if (gObj2.getType().equals(GameObjectType.PLAYER)) {
+                        if (this.bossState.equals(BossState.QUIZ)) {
+                            this.getMap().goQuiz(this);
+                        } else {
+                            final PlayerImpl player = (PlayerImpl) gObj2;
+                            player.setPosition(player.prevPosition);
+                            player.takeDamage(this.getImpactDamage());
+                        }
                     }
-                }
-                this.setPosition(this.getPreviousPosition());
-                break;
-            default:
-                break;
+                    this.setPosition(this.getPreviousPosition());
+                    break;
+                default:
+                    break;
             }
             this.setDirection(getDirection().multiplication(-1));
         }

@@ -13,7 +13,8 @@ import escapefromuniversity.model.gameObject.GameObjectType;
 import escapefromuniversity.model.GameInit;
 
 /**
- * The implementation of the {@link Player} interface. It also extends {@link AbstractDynamicGameObject}
+ * The implementation of the {@link Player} interface. It also extends
+ * {@link AbstractDynamicGameObject}
  */
 public class PlayerImpl extends AbstractDynamicGameObject implements Player {
 
@@ -24,7 +25,7 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
     private static final int START_DAMAGE = 10;
     private static final int START_ARMOR = 0;
     private static final Direction START_DIRECTION = Direction.DOWN;
-    private static final Point2D HIT_BOX_PLAYER = new Point2D(1,1.4);
+    private static final Point2D HIT_BOX_PLAYER = new Point2D(1, 1.4);
     private int life;
     private int credits;
     private int damage;
@@ -42,13 +43,15 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
 
     /**
      * Instantiates the player.
-     * @param type the game object type: a player.
-     * @param position the position of the player.
-     * @param speed the movement speed of the player.
-     * @param direction the direction of the player.
+     * 
+     * @param type       the game object type: a player.
+     * @param position   the position of the player.
+     * @param speed      the movement speed of the player.
+     * @param direction  the direction of the player.
      * @param shootDelay the shoot delay of the player.
      */
-    public PlayerImpl(final GameObjectType type, final Point2D position, final double speed, final Vector2D direction, final double shootDelay, final GameInit map) {
+    public PlayerImpl(final GameObjectType type, final Point2D position, final double speed, final Vector2D direction,
+            final double shootDelay, final GameInit map) {
         super(type, position, HIT_BOX_PLAYER, speed, direction, map);
         this.life = MAX_LIFE;
         this.credits = START_CREDITS;
@@ -69,13 +72,11 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
      */
     @Override
     public void collisionWith(final GameObject gObj2) {
-        if (this.collisionWithCheck(gObj2)) {
-            if (gObj2.getType().getCollisionType() == GameCollisionType.OBSTACLE) {
-                if (gObj2.getType() == GameObjectType.SHOP) {
-                    this.map.getMapManager().setupShop();
-                }
-                this.setPosition(this.prevPosition);
+        if (this.collisionWithCheck(gObj2) && gObj2.getType().getCollisionType() == GameCollisionType.OBSTACLE) {
+            if (gObj2.getType() == GameObjectType.SHOP) {
+                this.map.getMapManager().setupShop();
             }
+            this.setPosition(this.prevPosition);
         }
     }
 
@@ -103,7 +104,9 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
      * {@inheritDoc}
      */
     @Override
-    public int getMaxDamage() {return MAX_DAMAGE;}
+    public int getMaxDamage() {
+        return MAX_DAMAGE;
+    }
 
     /**
      * {@inheritDoc}
@@ -133,13 +136,17 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
      * {@inheritDoc}
      */
     @Override
-    public int getDamage() {return this.damage;}
+    public int getDamage() {
+        return this.damage;
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int getArmor() {return this.armor;}
+    public int getArmor() {
+        return this.armor;
+    }
 
     /**
      * {@inheritDoc}
@@ -285,7 +292,8 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
      */
     @Override
     public void shoot() {
-        final Bullet bullet = bulletFactory.createPlayerBullet(this.getObjectPosition(), this.getDirection(), this.damage, this.map);
+        final Bullet bullet = bulletFactory.createPlayerBullet(this.getObjectPosition(), this.getDirection(),
+                this.damage, this.map);
         this.getMap().addDynamicGameObject(bullet);
         this.shooting = false;
     }

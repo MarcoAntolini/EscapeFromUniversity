@@ -44,12 +44,14 @@ public class GameControllerImpl implements GameController {
     private List<Integer> gameObjID = new LinkedList<>();
 
     /**
-     * Instantiates a new GameController and initializes the corresponding GameModel and GameView and KeyHandler making the game start.
+     * Instantiates a new GameController and initializes the corresponding GameModel
+     * and GameView and KeyHandler making the game start.
      */
     public GameControllerImpl() {
         this.gameModel = new GameModelImpl(this);
         this.gameObjID = this.getGameObjectID();
-        this.layersController = new LayersControllerImpl(this.gameModel.getGameInit().getMap(), this.gameModel.getPlayer());
+        this.layersController = new LayersControllerImpl(this.gameModel.getGameInit().getMap(),
+                this.gameModel.getPlayer());
         this.shopController = new ShopControllerImpl(this, this.gameModel);
         this.setGameState(GameState.PLAY);
     }
@@ -61,23 +63,23 @@ public class GameControllerImpl implements GameController {
     public void gameLoop() {
         if (this.continueGame()) {
             switch (this.getGameState()) {
-            case PLAY:
-            case FIGHT:
-            case GRADUATED:
-                this.updateModel(DELTA);
-                this.checkSpriteAnimation();
-                break;
-            case QUIZ:
-                this.startQuiz(this.gameModel.getCurrentBoss());
-                break;
-            case MENU:
-                this.menuController.startView();
-                break;
-            case SHOP_MENU:
-                this.shopController.startView();
-                break;
-            default:
-                break;
+                case PLAY:
+                case FIGHT:
+                case GRADUATED:
+                    this.updateModel(DELTA);
+                    this.checkSpriteAnimation();
+                    break;
+                case QUIZ:
+                    this.startQuiz(this.gameModel.getCurrentBoss());
+                    break;
+                case MENU:
+                    this.menuController.startView();
+                    break;
+                case SHOP_MENU:
+                    this.shopController.startView();
+                    break;
+                default:
+                    break;
             }
         }
         if (this.getGameState() == GameState.WIN) {
@@ -85,7 +87,10 @@ public class GameControllerImpl implements GameController {
         }
     }
 
-    /* Checks if the player has won the game or if he lost and returns true if the game is not finished, false otherwise. */
+    /*
+     * Checks if the player has won the game or if he lost and returns true if the
+     * game is not finished, false otherwise.
+     */
     private boolean continueGame() {
         return this.getGameState() != GameState.LOST && this.getGameState() != GameState.WIN;
     }
@@ -259,9 +264,9 @@ public class GameControllerImpl implements GameController {
     public boolean isOver(final GameState gameState) {
         return gameState == GameState.LOST;
     }
-    
+
     private void showEnd(final Player player) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/End.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/End.fxml"));
         Parent gameRoot;
         final EndController endController = new EndController(this.getPlayer());
         loader.setController(endController);

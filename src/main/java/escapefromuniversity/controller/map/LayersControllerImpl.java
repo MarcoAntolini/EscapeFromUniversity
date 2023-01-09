@@ -1,20 +1,13 @@
 package escapefromuniversity.controller.map;
 
-import escapefromuniversity.inGame.GameController;
-import escapefromuniversity.inGame.GameControllerImpl;
-import escapefromuniversity.model.GameState;
 import escapefromuniversity.model.basics.Point2D;
 import escapefromuniversity.model.gameObject.player.Player;
 import escapefromuniversity.model.map.Layer;
 import escapefromuniversity.model.map.MapProperties;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -27,7 +20,8 @@ public class LayersControllerImpl implements LayersController {
 
     /**
      * A constructor for LayersControllerImpl.
-     * @param map the map properties.
+     * 
+     * @param map    the map properties.
      * @param player the player.
      */
     public LayersControllerImpl(final MapProperties map, final Player player) {
@@ -44,8 +38,11 @@ public class LayersControllerImpl implements LayersController {
     }
 
     /**
-     * Returns true if the player is standing over a tile of the shop, false otherwise.
-     * @return true if the player is standing over a tile of the shop, false otherwise.
+     * Returns true if the player is standing over a tile of the shop, false
+     * otherwise.
+     * 
+     * @return true if the player is standing over a tile of the shop, false
+     *         otherwise.
      */
     public boolean isShop() {
         return this.getProperties(player.getObjectPosition()).contains("shop");
@@ -53,6 +50,7 @@ public class LayersControllerImpl implements LayersController {
 
     /**
      * Returns true if the player is standing over a victory door, false otherwise.
+     * 
      * @return true if the player is standing over a victory door, false otherwise
      */
 
