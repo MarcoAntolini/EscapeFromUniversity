@@ -1,7 +1,6 @@
 package escapefromuniversity.shop;
 
 import escapefromuniversity.model.gameObject.player.Player;
-import escapefromuniversity.model.shop.Items;
 
 import java.awt.event.ActionEvent;
 

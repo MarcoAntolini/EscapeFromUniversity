@@ -1,11 +1,7 @@
 package escapefromuniversity.model.map;
 
-import org.xml.sax.SAXException;
-
 import escapefromuniversity.model.GameInit;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,6 +11,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of walls.
+     * 
      * @param gameInit the game initialization
      * @return a list of ObstacleObject
      */
@@ -22,6 +19,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of walls.
+     * 
      * @param gameInit the game initialization
      * @return a list of ObstacleObject
      */
@@ -29,6 +27,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of doors.
+     * 
      * @param gameInit the game initialization
      * @return a list of ObstacleObject
      */
@@ -36,6 +35,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of the victory doors.
+     * 
      * @param gameInit the game initialization
      * @return the list of the victory doors
      */
@@ -43,6 +43,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of furniture.
+     * 
      * @param gameInit the game initialization
      * @return a list of ObstacleObject
      */
@@ -50,6 +51,7 @@ public interface Obstacle {
 
     /**
      * Returns the list of the tiles of the shop.
+     * 
      * @param gameInit the game initialization
      * @return the list of the tiles of the shop
      */

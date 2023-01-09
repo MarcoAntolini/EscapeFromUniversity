@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import escapefromuniversity.WriteFile;
 import escapefromuniversity.controller.map.LayersControllerImpl;
-import escapefromuniversity.inGame.end.EndController;
 import escapefromuniversity.launcher.LauncherView;
 import escapefromuniversity.menu.MenuController;
 import escapefromuniversity.menu.MenuControllerImpl;
@@ -38,7 +37,6 @@ public class GameControllerImpl implements GameController {
     private GameView gameView;
     private final ShopController shopController;
     private final MenuController menuController = new MenuControllerImpl(this);
-    private final LayersControllerImpl layersController;
     private GameState gameState;
     private GameState prevGameState;
     private List<Integer> gameObjID = new LinkedList<>();
@@ -50,8 +48,7 @@ public class GameControllerImpl implements GameController {
     public GameControllerImpl() {
         this.gameModel = new GameModelImpl(this);
         this.gameObjID = this.getGameObjectID();
-        this.layersController = new LayersControllerImpl(this.gameModel.getGameInit().getMap(),
-                this.gameModel.getPlayer());
+        new LayersControllerImpl(this.gameModel.getGameInit().getMap(), this.gameModel.getPlayer());
         this.shopController = new ShopControllerImpl(this, this.gameModel);
         this.setGameState(GameState.PLAY);
     }
@@ -263,15 +260,5 @@ public class GameControllerImpl implements GameController {
     @Override
     public boolean isOver(final GameState gameState) {
         return gameState == GameState.LOST;
-    }
-
-    private void showEnd(final Player player) throws IOException {
-        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/End.fxml"));
-        Parent gameRoot;
-        final EndController endController = new EndController(this.getPlayer());
-        loader.setController(endController);
-        gameRoot = loader.load();
-        Scene end = new Scene(gameRoot, LauncherResizer.sceneWidth, LauncherResizer.sceneHeight);
-        LauncherView.launcherWindow.setScene(end);
     }
 }

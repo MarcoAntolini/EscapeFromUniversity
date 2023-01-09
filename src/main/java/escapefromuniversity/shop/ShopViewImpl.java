@@ -1,7 +1,6 @@
 package escapefromuniversity.shop;
 
 import escapefromuniversity.utilities.WindowSet;
-import escapefromuniversity.utilities.OSFixes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,8 @@ import static escapefromuniversity.utilities.LauncherResizer.SCREENWIDTH;
 import static escapefromuniversity.utilities.WindowSet.FONT;
 
 /**
- * The implementation of {@link ShopView} that extends also {@link JPanel} to add all the shop components to the screen.
+ * The implementation of {@link ShopView} that extends also {@link JPanel} to
+ * add all the shop components to the screen.
  */
 public class ShopViewImpl implements ShopView {
 
@@ -36,17 +36,30 @@ public class ShopViewImpl implements ShopView {
     private final JLabel armorLabel = new JLabel("12 Credits", this.armorIcon, SwingConstants.CENTER);
     private final JLabel damageLabel = new JLabel("12 Credits", this.damageIcon, SwingConstants.CENTER);
     private final JLabel chanceLabel = new JLabel("18 Credits", this.chanceIcon, SwingConstants.CENTER);
-    private final Rectangle creditsCounterPos = new Rectangle((int) (20 * windowRatio), (int) (5 * windowRatio), (int) (150 * windowRatio), (int) ((creditsIcon.getIconHeight() + 20) * windowRatio));
-    private final Rectangle itemInfoPos = new Rectangle((int) (40 * windowRatio), (int) ((SCREENHEIGHT + 20) * windowRatio), (int) (300 * windowRatio), (int) (200 * windowRatio));
-    private final Rectangle buyLifePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (250 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
-    private final Rectangle buyArmorPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (350 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
-    private final Rectangle buyDamagePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (450 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
-    private final Rectangle buyChancePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (550 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
-    private final Rectangle exitPos = new Rectangle((int) ((SCREENWIDTH - buttonBackground.getIconWidth() - 40) * windowRatio), (int) ((SCREENHEIGHT - buttonBackground.getIconHeight() - 20) * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
-    private final Rectangle lifeLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (200 * windowRatio), (lifeIcon.getIconWidth() + 150), (lifeIcon.getIconHeight() + 20));
-    private final Rectangle armorLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (300 * windowRatio), (armorIcon.getIconWidth() + 150), (armorIcon.getIconHeight() + 20));
-    private final Rectangle damageLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (400 * windowRatio), (damageIcon.getIconWidth() + 150), (damageIcon.getIconHeight() + 20));
-    private final Rectangle chanceLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio), (int) (500 * windowRatio), (chanceIcon.getIconWidth() + 150), (chanceIcon.getIconHeight() + 20));
+    private final Rectangle creditsCounterPos = new Rectangle((int) (20 * windowRatio), (int) (5 * windowRatio),
+            (int) (150 * windowRatio), (int) ((creditsIcon.getIconHeight() + 20) * windowRatio));
+    private final Rectangle itemInfoPos = new Rectangle((int) (40 * windowRatio),
+            (int) ((SCREENHEIGHT + 20) * windowRatio), (int) (300 * windowRatio), (int) (200 * windowRatio));
+    private final Rectangle buyLifePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (250 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
+    private final Rectangle buyArmorPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (350 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
+    private final Rectangle buyDamagePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (450 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
+    private final Rectangle buyChancePos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (550 * windowRatio), (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
+    private final Rectangle exitPos = new Rectangle(
+            (int) ((SCREENWIDTH - buttonBackground.getIconWidth() - 40) * windowRatio),
+            (int) ((SCREENHEIGHT - buttonBackground.getIconHeight() - 20) * windowRatio),
+            (buttonBackground.getIconWidth()), (buttonBackground.getIconHeight()));
+    private final Rectangle lifeLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (200 * windowRatio), (lifeIcon.getIconWidth() + 150), (lifeIcon.getIconHeight() + 20));
+    private final Rectangle armorLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (300 * windowRatio), (armorIcon.getIconWidth() + 150), (armorIcon.getIconHeight() + 20));
+    private final Rectangle damageLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (400 * windowRatio), (damageIcon.getIconWidth() + 150), (damageIcon.getIconHeight() + 20));
+    private final Rectangle chanceLabelPos = new Rectangle((int) (SCREENWIDTH / 2.5 * windowRatio),
+            (int) (500 * windowRatio), (chanceIcon.getIconWidth() + 150), (chanceIcon.getIconHeight() + 20));
     private final Color color = new Color(255, 241, 179);
     public static final String buyButton = "Buy";
     public static final String buyLifeInfo = "Restores your HP to max.";
@@ -56,6 +69,7 @@ public class ShopViewImpl implements ShopView {
 
     /**
      * Instantiates the view of the shop and initializes its window.
+     * 
      * @param shopController the shop controller to assign to this shop view.
      */
     public ShopViewImpl(final ShopController shopController) {
@@ -92,7 +106,8 @@ public class ShopViewImpl implements ShopView {
         this.exit.setFont(FONT);
         this.exit.setHorizontalTextPosition(SwingConstants.CENTER);
         this.exit.addActionListener(e -> this.shopController.closeShop());
-        this.itemInfo.setText("HP Restore:" + buyLifeInfo + "\n" + "Armor Buff:" + buyArmorInfo + "\n" + "Damage Buff:" + buyDamageInfo + "\n" + "Second Chance:" + buyChanceInfo);
+        this.itemInfo.setText("HP Restore:" + buyLifeInfo + "\n" + "Armor Buff:" + buyArmorInfo + "\n" + "Damage Buff:"
+                + buyDamageInfo + "\n" + "Second Chance:" + buyChanceInfo);
         this.setCreditsCounter();
         this.window.setTitle("Escape From University");
         this.window.setSize((int) (SCREENWIDTH * this.windowRatio), (int) (SCREENHEIGHT * this.windowRatio));

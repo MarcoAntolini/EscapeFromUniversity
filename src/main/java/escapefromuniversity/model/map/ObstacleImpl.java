@@ -12,18 +12,19 @@ import java.util.stream.Collectors;
  */
 public class ObstacleImpl implements Obstacle {
 
-    private static final String MAP_NAME = "final-map.tmx";
     private final MapProperties map;
 
     /**
      * A constructor for ObstaclesFactory.
+     * 
      * @param map the map
      */
     public ObstacleImpl(final MapProperties map) {
         this.map = map;
     }
 
-    private List<ObstacleObject> getObstacleList(final String property, final GameObjectType obsType, final GameInit gameInit) {
+    private List<ObstacleObject> getObstacleList(final String property, final GameObjectType obsType,
+            final GameInit gameInit) {
         return map.getLayers()
                 .stream()
                 .filter(l -> l.getProperties().contains(property))

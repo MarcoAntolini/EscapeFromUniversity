@@ -7,8 +7,6 @@ import escapefromuniversity.model.basics.Point2D;
 import escapefromuniversity.model.basics.Vector2D;
 import escapefromuniversity.model.gameObject.GameObjectType;
 import escapefromuniversity.model.gameObject.State;
-import escapefromuniversity.model.gameObject.bullet.BulletFactory;
-import escapefromuniversity.model.gameObject.bullet.BulletFactoryImpl;
 import escapefromuniversity.model.gameObject.enemy.Boss;
 import escapefromuniversity.model.gameObject.enemy.BossFactory;
 import escapefromuniversity.model.gameObject.enemy.BossFactoryImpl;
@@ -37,6 +35,7 @@ public class MapManagerImpl implements MapManager {
 
     /**
      * A constructor for MapManagerImpl.
+     * 
      * @param gameModel the game model
      */
     public MapManagerImpl(final GameModel gameModel) {
@@ -61,6 +60,7 @@ public class MapManagerImpl implements MapManager {
 
     /**
      * Returns the starting position of the player.
+     * 
      * @return the starting position of the player
      */
     public Point2D getStartingPosition() {
@@ -69,6 +69,7 @@ public class MapManagerImpl implements MapManager {
 
     /**
      * Loads the obstacles in the map.
+     * 
      * @param gameInit the game initialization
      */
     private void loadObstacles(final GameInit gameInit) {
@@ -85,11 +86,13 @@ public class MapManagerImpl implements MapManager {
 
     /**
      * Initialize the game.
+     * 
      * @return the game initialization
      */
     private GameInit createGameInit() {
         var gameInit = new GameInitImpl(this);
-        Player player = new PlayerImpl(GameObjectType.PLAYER, getStartingPosition(), PLAYER_SPEED, new Vector2D(1, 0), PLAYER_SHOOT_DELAY, gameInit);
+        Player player = new PlayerImpl(GameObjectType.PLAYER, getStartingPosition(), PLAYER_SPEED, new Vector2D(1, 0),
+                PLAYER_SHOOT_DELAY, gameInit);
         player.setState(State.LEFT);
         gameInit.addDynamicGameObject(player);
         loadObstacles(gameInit);
@@ -100,7 +103,6 @@ public class MapManagerImpl implements MapManager {
         gameInit.addDynamicGameObject(bossFactory.createBoss4(BOSS4_STARTING_POS, new Vector2D(1, 0), gameInit));
         gameInit.addDynamicGameObject(bossFactory.createBoss5(BOSS5_STARTING_POS, new Vector2D(1, 0), gameInit));
         gameInit.addDynamicGameObject(bossFactory.createBoss6(BOSS6_STARTING_POS, new Vector2D(1, 0), gameInit));
-        BulletFactory bullets = new BulletFactoryImpl();
         return gameInit;
     }
 
@@ -127,7 +129,6 @@ public class MapManagerImpl implements MapManager {
     @Override
     public void setStatePlay() {
         this.gameModel.setStatePlay();
-        
     }
 
 }

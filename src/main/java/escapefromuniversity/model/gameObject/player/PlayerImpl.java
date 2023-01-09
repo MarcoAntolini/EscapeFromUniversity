@@ -37,7 +37,6 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
     private boolean shooting;
     private boolean bonusQuiz;
     public Point2D prevPosition;
-    private Vector2D shotDirection;
     private Direction direction;
     private final BulletFactory bulletFactory;
 
@@ -283,7 +282,6 @@ public class PlayerImpl extends AbstractDynamicGameObject implements Player {
     public void setShoot(final boolean shooting, final Direction direction) {
         if (this.canShoot(0.2)) {
             this.shooting = shooting;
-            this.shotDirection = direction.getDirection();
         }
     }
 

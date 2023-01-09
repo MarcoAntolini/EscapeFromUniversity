@@ -17,7 +17,6 @@ import escapefromuniversity.model.gameObject.enemy.Boss;
 import escapefromuniversity.model.gameObject.enemy.Boss.BossState;
 import escapefromuniversity.model.quiz.Quiz;
 import escapefromuniversity.utilities.LauncherResizer;
-import escapefromuniversity.view.map.MapLoader;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -29,7 +28,7 @@ import javafx.scene.paint.Color;
  * The controller of the quiz exam.
  */
 public class QuizController {
-	
+
 	@FXML
 	private Label profLabel, subjectLabel, creditsLabel, gradeLabel, maxGradeLabel, provaLabel;
 	@FXML
@@ -38,12 +37,12 @@ public class QuizController {
 	private Button questionButton, nextButton, uno, due, tre, quattro;
 	@FXML
 	private HBox answerBox1, answerBox2, backGameBox;
-	
+
 	private Exam exam;
 	private Quiz currentQuiz;
 	private Boss boss;
 	private GameController gc;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -60,17 +59,6 @@ public class QuizController {
 		}
 	}
 
-//	public void setParameters(final Boss boss, final Player player) {
-//		try {
-//			this.exam = new ExamImporter(boss.getBossExam()).importExam();
-//			if (this.exam.hasNextQuiz()) {
-//				currentQuiz = this.exam.getNextQuiz();
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	@FXML
 	void initialize() {
 		creditsLabel.setText("" + this.exam.getCredits());
@@ -120,30 +108,29 @@ public class QuizController {
 			}
 		}
 	}
-	
+
 	// Event Listener on Button[#a].onAction
 	@FXML
-	public void answer(final ActionEvent event) {	
+	public void answer(final ActionEvent event) {
 		try {
-			char choce;
 			if (event.getSource().equals(uno)) {
-	    		answerUpdate(1);
-	    	} else if (event.getSource().equals(due)) {	
-	    		answerUpdate(2);
-	    	} else if (event.getSource().equals(tre)) {
-	    		answerUpdate(3);
-	    	} else if (event.getSource().equals(quattro)) {
-	    		answerUpdate(4);
-	    	}
+				answerUpdate(1);
+			} else if (event.getSource().equals(due)) {
+				answerUpdate(2);
+			} else if (event.getSource().equals(tre)) {
+				answerUpdate(3);
+			} else if (event.getSource().equals(quattro)) {
+				answerUpdate(4);
+			}
 			nextButton.setDisable(false);
 			creditsLabel.setText("" + this.exam.getCredits());
 			gradeLabel.setText("" + this.exam.getGrade());
 			maxGradeLabel.setText("" + this.exam.getMaxGrade());
-    	} catch (Exception e) {
-    		System.out.println(e);
-    	}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
-	
+
 	@FXML
 	public void backToGame(final ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layouts/Game.fxml"));
@@ -152,7 +139,7 @@ public class QuizController {
 		Scene game = new Scene(gameRoot, LauncherResizer.sceneWidth, LauncherResizer.sceneHeight);
 		LauncherView.launcherWindow.setScene(game);
 	}
-	
+
 	private void answerUpdate(final int choice) {
 		if (this.currentQuiz.giveAnAnswer(choice)) {
 			questionButton.setTextFill(Color.DARKGREEN);
@@ -163,7 +150,7 @@ public class QuizController {
 		}
 		setDisableToAll(true);
 	}
-	
+
 	private void setDisableToAll(final boolean state) {
 		uno.setDisable(state);
 		due.setDisable(state);
