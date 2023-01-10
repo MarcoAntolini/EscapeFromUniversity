@@ -23,9 +23,11 @@ public final class LauncherView extends Application {
 
     /**
      * Loads the launcher fxml file and sets it up.
+     * 
      * @param stage the primary stage for this application, onto which
      *              the application scene can be set.
-     *              Applications may create other stages, if needed, but they will not be
+     *              Applications may create other stages, if needed, but they will
+     *              not be
      *              primary stages.
      * @throws Exception
      */
@@ -33,8 +35,9 @@ public final class LauncherView extends Application {
         OSFixes.createHomeFolder();
         OSFixes.createScoreFile();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/Launcher.fxml"));
-        //URL fileLocation = new File(OSFixes.getLocation("layouts","Launcher.fxml")).toURI().toURL();
-        //loader.setLocation(fileLocation);
+        // URL fileLocation = new
+        // File(OSFixes.getLocation("layouts","Launcher.fxml")).toURI().toURL();
+        // loader.setLocation(fileLocation);
         Parent startRoot = loader.load();
         LauncherResizer launcherResizer = new LauncherResizer();
         launcherResizer.setSceneSize(SCREENWIDTH, SCREENHEIGHT);
@@ -43,7 +46,7 @@ public final class LauncherView extends Application {
         stage.setScene(launcher);
         stage.setResizable(false);
         stage.centerOnScreen();
-        Image logo = new Image("file:" + OSFixes.getLocation("images", "logo.png")); // TODO change icon
+        Image logo = new Image("file:" + OSFixes.getLocation("images", "logo.png"));
         stage.getIcons().add(logo);
         stage.show();
         launcherWindow = stage;
